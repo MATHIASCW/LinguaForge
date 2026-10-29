@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="stylesheet" href="styles.css"></head><body>
+<title>LinguaForge</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Figtree:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+<main class="app">
+  <header>
+    <h1>LinguaForge</h1>
+    <p class="tag" data-i18n="tagline">Every word is a monster. Type its translation to defeat it. Missed words return sooner, while mastered words spread out on the calendar.</p>
+  </header>
+
+  <section class="pair" aria-label="Language selection">
+    <label><span class="label" data-i18n="monstersSpeak">Monsters speak</span><select id="selFrom"></select></label>
+    <button class="swap" id="swap" type="button" aria-label="Swap languages" title="Swap languages">⇄</button>
+    <label><span class="label" data-i18n="answerIn">I answer in</span><select id="selTo"></select></label>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" id="t-fight" data-tab="fight" aria-selected="true" data-i18n="battle">Battle</button>
+    <button class="tab" role="tab" id="t-cal" data-tab="cal" aria-selected="false" data-i18n="calendar">Calendar</button>
+    <button class="tab" role="tab" id="t-dex" data-tab="dex" aria-selected="false" data-i18n="bestiary">Bestiary</button>
+  </nav>
+
+  <section id="v-fight" class="card" role="tabpanel" aria-labelledby="t-fight">
+    <div class="stats">
+      <div class="hearts" id="hearts" aria-label="Lives"></div>
+      <div class="stat"><span class="label" data-i18n="streak">Streak</span><b id="streak">0</b></div>
+      <div class="stat"><span class="label" data-i18n="level">Level</span><b id="lvl">1</b><span class="label" id="xp">0 XP</span></div>
+    </div>
+    <div id="fightBody"></div>
+  </section>
+
+  <section id="v-cal" class="card" role="tabpanel" aria-labelledby="t-cal" hidden>
+    <p id="calSummary" class="empty" style="margin:0 0 12px"></p>
+    <div class="calhead">
+        <button class="nav" id="prevM" type="button" aria-label="Previous month" data-i18n-aria="previousMonth">‹</button>
+      <h2 id="monthTitle"></h2>
+      <button class="nav" id="nextM" type="button" aria-label="Next month" data-i18n-aria="nextMonth">›</button>
+    </div>
+    <div class="grid7" id="calGrid"></div>
+    <div class="legend"><span><b style="color:var(--warn)">●</b> <span data-i18n="wordsDueThatDay">words due that day</span></span><span><b style="color:var(--good)">▬</b> <span data-i18n="battleCompleted">battle completed</span></span></div>
+    <div id="dayDetail"></div>
+  </section>
+
+  <section id="v-dex" class="card" role="tabpanel" aria-labelledby="t-dex" hidden>
+    <h2 data-i18n="bestiary">Bestiary</h2>
+    <p id="dexSummary" class="empty" style="margin:0 0 12px"></p>
+    <div class="dex" id="dexGrid"></div>
+  </section>
+
+  <details class="set">
+    <summary data-i18n="settings">Settings</summary>
+    <div class="opts">
+      <label><span class="label" data-i18n="interfaceLanguage">Interface language</span><select id="uiLanguage"><option value="en">English</option><option value="fr">Français</option></select></label>
+      <label><input type="checkbox" id="oAuto"><span data-i18n="autocomplete">Autocomplete<small data-i18n="autocompleteHelp">Suggests words while you type.</small></span></label>
+      <label><input type="checkbox" id="oRead"><span data-i18n="pronunciation">Show pronunciation<small data-i18n="pronunciationHelp">Shows romaji, pinyin and transliteration when available.</small></span></label>
+      <label><input type="checkbox" id="oTol"><span data-i18n="tolerance">Allow spelling mistakes<small data-i18n="toleranceHelp">Accepts small typos and missing accents.</small></span></label>
+      <label><input type="checkbox" id="oColorblind"><span data-i18n="colorblind">Color-blind mode<small data-i18n="colorblindHelp">Uses contrast and shape cues in addition to color.</small></span></label>
+      <div class="row" style="margin:0">
+        <button class="btn ghost" id="reset" type="button" data-i18n="reset">Reset progress</button>
+        <span id="resetMsg" class="empty"></span>
+      </div>
+    </div>
+  </details>
+</main>
+
+<script src="data/vocabulary.js"></script>
+<script src="data/i18n.js"></script>
+<script src="app.js"></script>
+
+</body></html>
